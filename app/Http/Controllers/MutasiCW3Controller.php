@@ -76,9 +76,9 @@ class MutasiCW3Controller extends Controller
 
     public function downloadImportTemplate()
     {
-        $path = base_path('/template/mutasi_cw.xls');;
+        $path = base_path('/template/mutasi_wtb.xls');;
 
-        return response()->download($path, 'mutasi_cw.xls', [
+        return response()->download($path, 'mutasi_wtb.xls', [
             'Content-Type' => 'text/xls',
         ]);
     }
@@ -91,7 +91,7 @@ class MutasiCW3Controller extends Controller
         $pdf = PDF::loadView('mutasi_cw3.barcode', compact('dataproduk'));
         $pdf->setPaper('a4', 'portrait');
         $pdf->setOption(['dpi' => 150, 'defaultFont' => 'serif']);
-        return $pdf->stream('mutasi_cw3.pdf');
+        return $pdf->stream('mutasi_wtb3.pdf');
     }
 
     public function cetakQR()
@@ -101,7 +101,7 @@ class MutasiCW3Controller extends Controller
         $pdf = PDF::loadView('mutasi_cw3.qr', compact('dataproduk'));
         $pdf->setPaper('a4', 'portrait');
         $pdf->setOption(['dpi' => 150, 'defaultFont' => 'serif']);
-        return $pdf->stream('mutasi_cw3.pdf');
+        return $pdf->stream('mutasi_wtb3.pdf');
     }
     
 }

@@ -86,7 +86,7 @@ class CrystalReport2Controller extends Controller
 
     public function cetakBarcode()
     {
-        $dataproduk = CrystalReport2::all()->groupBy('location'); 
+        $dataproduk = CrystalReport2::all()->unique('item_no')->unique('item_name')->groupBy('location'); 
         
         $pdf = PDF::loadView('crystal_report2.barcode', compact('dataproduk'));
         $pdf->setPaper('a4', 'portrait');
@@ -97,8 +97,8 @@ class CrystalReport2Controller extends Controller
 
     public function cetakQR()
     {
-        $dataproduk = CrystalReport2::all()->groupBy('location');
-
+        $dataproduk = CrystalReport2::all()->unique('item_no')->unique('item_name')->groupBy('location'); 
+        
         $pdf = PDF::loadView('crystal_report2.qr', compact('dataproduk'));
         $pdf->setPaper('a4', 'portrait');
         $pdf->setOption(['dpi' => 150, 'defaultFont' => 'sans-serif']);

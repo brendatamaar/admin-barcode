@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
-class MutasiCW1Import implements ToModel, WithStartRow, WithMultipleSheets
+class MutasiCW5Import implements ToModel, WithStartRow, WithMultipleSheets
 {
     private $index_sheet = 0;
 

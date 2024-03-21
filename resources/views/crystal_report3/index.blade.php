@@ -83,6 +83,7 @@
                         <th scope="col">Item No</th>
                         <th scope="col">Item Name</th>
                         <th scope="col">Barcode</th>
+                        <th scope="col">UOM</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -97,9 +98,10 @@
                         <td>{{ $crystal_report3s->item_no }}</td>
                         <td>{{ $crystal_report3s->item_name }}</td>
                         <td>{{ $crystal_report3s->barcode }}</td>
+                        <td>{{ $crystal_report3s->uom }}</td>
                     </tr>
                     @empty
-                    <td colspan="9">
+                    <td colspan="10">
                         <span class="text-danger">
                             <strong>Data Kosong</strong>
                         </span>

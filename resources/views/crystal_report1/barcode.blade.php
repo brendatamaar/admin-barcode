@@ -119,7 +119,7 @@
                     {{ $produk_detail['barcode'] }}
                 </p>
             </td>
-            <td style="padding: 0px 20px; text-align: center; width: 26%;">{{ $produk_detail['item_no'] }} {{ $produk_detail['item_name'] }}</td>
+            <td style="padding: 0px 20px; text-align: center; width: 26%;">{{ $produk_detail['item_no'] }} {{ $produk_detail['item_name'] }} - {{ $produk_detail['uom'] }}</td>
             <td style="width: 12%;"></td>
             <td style="width: 12%;"></td>
         </tr>
@@ -147,7 +147,7 @@
                     {{ $produk_detail['barcode'] }}
                 </p>
             </td>
-            <td style="padding: 0px 20px; text-align: center; width: 26%;">{{ $produk_detail['item_no'] }} {{ $produk_detail['item_name'] }}</td>
+            <td style="padding: 0px 20px; text-align: center; width: 26%;">{{ $produk_detail['item_no'] }} {{ $produk_detail['item_name'] }} - {{ $produk_detail['uom'] }}</td>
             <td style="width: 12%;"></td>
             <td style="width: 12%;"></td>
         </tr>

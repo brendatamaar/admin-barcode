@@ -52,7 +52,7 @@
 
 <div class="card">
 
-    <div class="card-header">Mutasi Tag Bin 1</div>
+    <div class="card-header">Mutasi Barcode Lokasi 1</div>
     <div class="card-body">
         <div class="mb-2">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">

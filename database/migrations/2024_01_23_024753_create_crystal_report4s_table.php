@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('item_no')->nullable();
             $table->text('item_name')->nullable();
             $table->text('barcode')->nullable();
+            $table->text('uom')->nullable();
             $table->timestamps();
         });
     }

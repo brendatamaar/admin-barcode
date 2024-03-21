@@ -29,7 +29,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="excel-csv-import-form" method="POST" action="{{ url('import-excel-crystal-report2') }}" accept-charset="utf-8" enctype="multipart/form-data">
+                <form id="excel-csv-import-form" method="POST" action="{{ url('import-excel-crystal-report1') }}" accept-charset="utf-8" enctype="multipart/form-data">
                     @csrf
                     <div class="input-group">
                         <input type="file" id="fileInput" name="file" required />
@@ -83,6 +83,7 @@
                         <th scope="col">Item No</th>
                         <th scope="col">Item Name</th>
                         <th scope="col">Barcode</th>
+                        <th scope="col">UOM</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -97,9 +98,10 @@
                         <td>{{ $crystal_report1s->item_no }}</td>
                         <td>{{ $crystal_report1s->item_name }}</td>
                         <td>{{ $crystal_report1s->barcode }}</td>
+                        <td>{{ $crystal_report1s->uom }}</td>
                     </tr>
                     @empty
-                    <td colspan="9">
+                    <td colspan="10">
                         <span class="text-danger">
                             <strong>Data Kosong</strong>
                         </span>

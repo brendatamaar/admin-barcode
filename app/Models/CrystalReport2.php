@@ -18,6 +18,7 @@ class CrystalReport2 extends Model
         'category',
         'item_no',
         'item_name',
-        'barcode'
+        'barcode',
+        'uom'
     ];
 }

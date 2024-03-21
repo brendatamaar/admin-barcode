@@ -76,9 +76,9 @@ class MutasiTagBin2Controller extends Controller
 
     public function downloadImportTemplate()
     {
-        $path = base_path('/template/mutasi_tagbin.xls');;
+        $path = base_path('/template/mutasi_barcode_lokasi.xls');;
 
-        return response()->download($path, 'mutasi_tagbin.xls', [
+        return response()->download($path, 'mutasi_barcode_lokasi.xls', [
             'Content-Type' => 'text/xls',
         ]);
     }
@@ -91,7 +91,7 @@ class MutasiTagBin2Controller extends Controller
         $pdf = PDF::loadView('mutasi_tag_bin2.barcode', compact('dataproduk', 'no'));
         $pdf->setPaper('a4', 'potrait');
         $pdf->setOption(['dpi' => 150, 'defaultFont' => 'sans-serif']);
-        return $pdf->stream('mutasi_tag_bin2.pdf');
+        return $pdf->stream('mutasi_barcode_lokasi2.pdf');
     }
 
     public function cetakQR()
@@ -101,6 +101,6 @@ class MutasiTagBin2Controller extends Controller
         $pdf = PDF::loadView('mutasi_tag_bin2.qr', compact('dataproduk', 'no'));
         $pdf->setPaper('a4', 'potrait');
         $pdf->setOption(['dpi' => 150, 'defaultFont' => 'sans-serif']);
-        return $pdf->stream('mutasi_tag_bin2.pdf');
+        return $pdf->stream('mutasi_barcode_lokasi2.pdf');
     }
 }

@@ -76,9 +76,9 @@ class MutasiTagBin4Controller extends Controller
 
     public function downloadImportTemplate()
     {
-        $path = base_path('/template/mutasi_tagbin.xls');;
+        $path = base_path('/template/mutasi_barcode_lokasi.xls');;
 
-        return response()->download($path, 'mutasi_tagbin.xls', [
+        return response()->download($path, 'mutasi_barcode_lokasi.xls', [
             'Content-Type' => 'text/xls',
         ]);
     }

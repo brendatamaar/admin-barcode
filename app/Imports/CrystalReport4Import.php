@@ -25,13 +25,15 @@ class CrystalReport4Import implements ToModel, WithStartRow, WithMultipleSheets
     {
         //print_r($row);
         return new CrystalReport4([
-            'no_kertas'     => $row[0],
-            'site_id'    => $row[1],
-            'site_name'    => $row[2],
-            'tag_bin_location' => $row[3],
-            'area' => $row[4],
-            'zone' => $row[5],
-            'status' => $row[6]
+            'site_id'     => $row[0],
+            'site_name'    => $row[1],
+            'location'    => $row[2],
+            'location_type' => $row[3],
+            'category' => $row[4],
+            'item_no' => $row[5],
+            'item_name' => $row[6],
+            'barcode' => $row[7],
+            'uom' => $row[8]
         ]);
     }
 

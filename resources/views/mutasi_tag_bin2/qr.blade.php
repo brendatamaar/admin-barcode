@@ -14,7 +14,7 @@
 
         .text-center {
             text-align: center;
-            font-size: 17px;
+            font-size: 16px;
         }
 
         div.right-align {
@@ -23,6 +23,11 @@
             text-align: left;
             background: transparent;
             margin: 10px 0 10px 0;
+        }
+
+        div.full-align {
+            width: 100%;
+            text-align: center;
         }
 
         div.left-align {
@@ -40,7 +45,7 @@
             clear: both;
         }
 
-        table {
+        .table {
             border-spacing: 3px 25px;
         }
     </style>
@@ -59,27 +64,25 @@
         <tr>
 
             @foreach ($dataproduk as $produk)
-            <td class="text-center" style="border: 4px solid #333;">
-
-                <div class="left-align">
-                    <img src="data:image/png;base64,{{ DNS2D::getBarcodePNG($produk['tag_bin_location'], 'QRCODE') }}" alt="barcode" width="85" height="85">
-                </div>
-
-                <div class="right-align">
-                    <b>{{ $produk['site_id'] }} - {{ $produk['site_name'] }}</b>
-                    <br />
-                    <br />
-                    <b>Area : {{ $produk['zone'] }}</b>
-                    <br />
-                    <br />
-                    <b>BIN : {{ $produk['tag_bin_location'] }}</b>
-                    <br /> <b>{{ $produk['status'] }}</b>
-
-                </div>
-
-                <div class="center-align medium-font dotted-border bg-dkred">
-
-                </div>
+            <td class="text-center" style="border: 4px solid #333; font-weight: bold;">
+                <table width="100%" style="margin: auto;" style="border: 1px solid #333;">
+                    <tr style="border: 1px solid #333;">
+                        <td colspan="3" style="text-align: center; border: 1px solid #333;"><b>{{ $produk['site_id'] }} - {{ $produk['site_name'] }}</b>
+                        </td>
+                    </tr>
+                    <tr style="border: 1px solid #333;">
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;" rowspan="3" width="40%"><img src="data:image/png;base64,{{ DNS2D::getBarcodePNG($produk['tag_bin_location'], 'QRCODE') }}" alt="barcode" width="85" height="85"></td>
+                        <td style="border: 1px solid #333; text-align: left; padding-left: 10px;" width="20%">Zone</td>
+                        <td style="border: 1px solid #333; text-align: left; padding-left: 10px;">:{{ $produk['zone'] }}</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #333; text-align: left;  padding-left: 10px;" width="20%">Bin</td>
+                        <td style="border: 1px solid #333; text-align: left; padding-left: 10px;">:{{ $produk['tag_bin_location'] }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="border: 1px solid #333; text-align: center;">{{ $produk['status'] }}</td>
+                    </tr>
+                </table>
             </td>
             @if ($no++ % 3 == 0)
         </tr>
@@ -93,27 +96,25 @@
         <tr>
 
             @foreach ($dataproduk as $produk)
-            <td class="text-center" style="border: 4px solid #333;">
-
-                <div class="left-align">
-                    <img src="data:image/png;base64,{{ DNS2D::getBarcodePNG($produk['tag_bin_location'], 'QRCODE') }}" alt="barcode" width="85" height="85">
-                </div>
-
-                <div class="right-align">
-                    <b>{{ $produk['site_id'] }} - {{ $produk['site_name'] }}</b>
-                    <br />
-                    <br />
-                    <b>Area : {{ $produk['zone'] }}</b>
-                    <br />
-                    <br />
-                    <b>BIN : {{ $produk['tag_bin_location'] }}</b>
-                    <br /> <b>{{ $produk['status'] }}</b>
-
-                </div>
-
-                <div class="center-align medium-font dotted-border bg-dkred">
-
-                </div>
+            <td class="text-center" style="border: 4px solid #333; font-weight: bold;">
+                <table width="100%" style="margin: auto;" style="border: 1px solid #333;">
+                    <tr style="border: 1px solid #333;">
+                        <td colspan="3" style="text-align: center; border: 1px solid #333;"><b>{{ $produk['site_id'] }} - {{ $produk['site_name'] }}</b>
+                        </td>
+                    </tr>
+                    <tr style="border: 1px solid #333;">
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;" rowspan="3" width="40%"><img src="data:image/png;base64,{{ DNS2D::getBarcodePNG($produk['tag_bin_location'], 'QRCODE') }}" alt="barcode" width="85" height="85"></td>
+                        <td style="border: 1px solid #333; text-align: left; padding-left: 10px;" width="20%">Zone</td>
+                        <td style="border: 1px solid #333; text-align: left; padding-left: 10px;">:{{ $produk['zone'] }}</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #333; text-align: left;  padding-left: 10px;" width="20%">Bin</td>
+                        <td style="border: 1px solid #333; text-align: left; padding-left: 10px;">:{{ $produk['tag_bin_location'] }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="border: 1px solid #333; text-align: center;">{{ $produk['status'] }}</td>
+                    </tr>
+                </table>
             </td>
             @if ($no++ % 3 == 0)
         </tr>
@@ -123,31 +124,29 @@
         </tr>
     </table>
     @else
-    <table width="100%">
+    <table width="100%" class="table">
         <tr>
 
             @foreach ($dataproduk as $produk)
-            <td class="text-center" style="border: 4px solid #333;">
-
-                <div class="left-align">
-                    <img src="data:image/png;base64,{{ DNS2D::getBarcodePNG($produk['tag_bin_location'], 'QRCODE') }}" alt="barcode" width="85" height="85">
-                </div>
-
-                <div class="right-align">
-                    <b>{{ $produk['site_id'] }} - {{ $produk['site_name'] }}</b>
-                    <br />
-                    <br />
-                    <b>Area : {{ $produk['zone'] }}</b>
-                    <br />
-                    <br />
-                    <b>BIN : {{ $produk['tag_bin_location'] }}</b>
-                    <br /> <b>{{ $produk['status'] }}</b>
-
-                </div>
-
-                <div class="center-align medium-font dotted-border bg-dkred">
-
-                </div>
+            <td class="text-center" style="border: 4px solid #333; font-weight: bold;">
+                <table width="100%" style="margin: auto;" style="border: 1px solid #333;">
+                    <tr style="border: 1px solid #333;">
+                        <td colspan="3" style="text-align: center; border: 1px solid #333;"><b>{{ $produk['site_id'] }} - {{ $produk['site_name'] }}</b>
+                        </td>
+                    </tr>
+                    <tr style="border: 1px solid #333;">
+                        <td style="border: 1px solid #333; padding: 8px; text-align: center;" rowspan="3" width="40%"><img src="data:image/png;base64,{{ DNS2D::getBarcodePNG($produk['tag_bin_location'], 'QRCODE') }}" alt="barcode" width="85" height="85"></td>
+                        <td style="border: 1px solid #333; text-align: left; padding-left: 10px;" width="20%">Zone</td>
+                        <td style="border: 1px solid #333; text-align: left; padding-left: 10px;">:{{ $produk['zone'] }}</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #333; text-align: left;  padding-left: 10px;" width="20%">Bin</td>
+                        <td style="border: 1px solid #333; text-align: left; padding-left: 10px;">:{{ $produk['tag_bin_location'] }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="border: 1px solid #333; text-align: center;">{{ $produk['status'] }}</td>
+                    </tr>
+                </table>
             </td>
             @if ($no++ % 3 == 0)
         </tr>

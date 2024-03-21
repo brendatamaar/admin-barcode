@@ -40,22 +40,22 @@
     <li class="nav-item {{ $isMutasiTagBin ? 'active' : null }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTagBin" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-book"></i>
-            <span>Mutasi Tag Bin</span>
+            <span>Mutasi Barcode Lokasi</span>
         </a>
 
         <div id="collapseTagBin" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 @canany(['view mutasi-tag-bin1'])
-                <a class="collapse-item" href="{{ route('mutasi_tag_bin1.index') }}">Mutasi Tag Bin 1</a>
+                <a class="collapse-item" href="{{ route('mutasi_tag_bin1.index') }}">Mutasi Barcode Lokasi 1</a>
                 @endcanany
                 @canany(['view mutasi-tag-bin2'])
-                <a class="collapse-item" href="{{ route('mutasi_tag_bin2.index') }}">Mutasi Tag Bin 2</a>
+                <a class="collapse-item" href="{{ route('mutasi_tag_bin2.index') }}">Mutasi Barcode Lokasi 2</a>
                 @endcanany
                 @canany(['view mutasi-tag-bin3'])
-                <a class="collapse-item" href="{{ route('mutasi_tag_bin3.index') }}">Mutasi Tag Bin 3</a>
+                <a class="collapse-item" href="{{ route('mutasi_tag_bin3.index') }}">Mutasi Barcode Lokasi 3</a>
                 @endcanany
                 @canany(['view mutasi-tag-bin4'])
-                <a class="collapse-item" href="{{ route('mutasi_tag_bin4.index') }}">Mutasi Tag Bin 4</a>
+                <a class="collapse-item" href="{{ route('mutasi_tag_bin4.index') }}">Mutasi Barcode Lokasi 4</a>
                 @endcanany
             </div>
         </div>
@@ -75,24 +75,24 @@
     <li class="nav-item {{ $isMutasiCW ? 'active' : null }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCW" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-book"></i>
-            <span>Mutasi C, W</span>
+            <span>Mutasi WTB</span>
         </a>
         <div id="collapseCW" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 @canany(['view mutasi-cw1'])
-                <a class="collapse-item" href="{{ route('mutasi_cw1.index') }}">Mutasi C, W 1</a>
+                <a class="collapse-item" href="{{ route('mutasi_cw1.index') }}">Mutasi WTB 1</a>
                 @endcanany
                 @canany(['view mutasi-cw2'])
-                <a class="collapse-item" href="{{ route('mutasi_cw2.index') }}">Mutasi C, W 2</a>
+                <a class="collapse-item" href="{{ route('mutasi_cw2.index') }}">Mutasi WTB 2</a>
                 @endcanany
                 @canany(['view mutasi-cw3'])
-                <a class="collapse-item" href="{{ route('mutasi_cw3.index') }}">Mutasi C, W 3</a>
+                <a class="collapse-item" href="{{ route('mutasi_cw3.index') }}">Mutasi WTB 3</a>
                 @endcanany
                 @canany(['view mutasi-cw4'])
-                <a class="collapse-item" href="{{ route('mutasi_cw4.index') }}">Mutasi C, W 4</a>
+                <a class="collapse-item" href="{{ route('mutasi_cw4.index') }}">Mutasi WTB 4</a>
                 @endcanany
                 @canany(['view mutasi-cw5'])
-                <a class="collapse-item" href="{{ route('mutasi_cw5.index') }}">Mutasi C, W 5</a>
+                <a class="collapse-item" href="{{ route('mutasi_cw5.index') }}">Mutasi WTB 5</a>
                 @endcanany
             </div>
         </div>
