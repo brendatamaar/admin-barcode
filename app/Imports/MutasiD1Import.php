@@ -3,12 +3,12 @@
 namespace App\Imports;
 
 use App\Models\MutasiD1;
-use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithStartRow;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
+use Maatwebsite\Excel\Concerns\WithValidation;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class MutasiD1Import implements ToModel, WithStartRow, WithMultipleSheets
+class MutasiD1Import implements ToModel, WithMultipleSheets, WithHeadingRow, WithValidation
 {
     private $index_sheet = 0;
 
@@ -23,17 +23,33 @@ class MutasiD1Import implements ToModel, WithStartRow, WithMultipleSheets
      */
     public function model(array $row)
     {
-        //print_r($row);
+        if (!array_filter($row)) {
+            return null;
+        }
+
         return new MutasiD1([
-            'no_kertas'     => $row[0],
-            'site_id'    => $row[1],
-            'site_name'    => $row[2],
-            'tag_bin_location' => $row[3],
-            'area' => $row[4],
-            'zone' => $row[5],
-            'status' => $row[6],
-            'cek' => $row[7]
+            'no_kertas' => $row['no_kertas'],
+            'site_id' => $row['site_id'],
+            'site_name' => $row['site_name'],
+            'tag_bin_location' => $row['tag_bin_location'],
+            'area' => $row['area'],
+            'zone' => $row['zone'],
+            'status' => $row['status']
         ]);
+        
+    }
+
+    public function rules(): array
+    {
+        return [
+            'no_kertas' => 'required',
+            'site_id' => 'required',
+            'site_name' => 'required',
+            'tag_bin_location' => 'required',
+            'area' => 'required',
+            'zone' => 'required',
+            'status' => 'required',
+        ];
     }
 
     public function sheets(): array
@@ -41,10 +57,5 @@ class MutasiD1Import implements ToModel, WithStartRow, WithMultipleSheets
         return [
             $this->index_sheet => $this,
         ];
-    }
-
-    public function startRow(): int
-    {
-        return 2; // Skip the first row
     }
 }

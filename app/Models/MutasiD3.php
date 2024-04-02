@@ -17,7 +17,6 @@ class MutasiD3 extends Model
         'tag_bin_location',
         'area',
         'zone',
-        'status',
-        'cek'
+        'status'
     ];
 }

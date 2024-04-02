@@ -20,7 +20,6 @@ return new class extends Migration
             $table->text('area')->nullable();
             $table->string('zone')->nullable();
             $table->text('status')->nullable();
-            $table->text('cek')->nullable();
             $table->timestamps();
         });
     }

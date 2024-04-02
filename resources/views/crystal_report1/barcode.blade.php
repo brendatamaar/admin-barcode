@@ -43,9 +43,9 @@
 </head>
 
 <body>
-
     @foreach ($dataproduk as $key => $produk)
 
+    
     <div style="display: none;">
         {{ $currentIndex = $loop->iteration }}
         @if($loop->last)
@@ -59,7 +59,7 @@
 
     @if($loop->first)
 
-    <div class="header">
+    <div class="header" style="margin-top: 20px">
         <table width="100%" style="font-size: 17px;">
             <tr>
                 <td rowspan="3" width="65%" style="padding: 8px;">
@@ -172,6 +172,16 @@
     @endforeach
 
     @endforeach
+
+    <script type="text/php">
+    if ( isset($pdf) ) {
+        $size = 6;
+        $font_bold = $fontMetrics->getFont("helvetica", "bold");
+        
+        // generated text written to every page after rendering
+        $pdf->page_text(540, 5, "Page {PAGE_NUM} of {PAGE_COUNT}", $font_bold, $size, [0, 0, 0]);
+    }
+    </script>
 </body>
 
 </html>

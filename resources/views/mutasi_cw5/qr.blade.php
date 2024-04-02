@@ -59,7 +59,7 @@
         @endif
     </div>
 
-    <div class="header">
+    <div class="header" style="margin-top: 12px;">
         <div class="left">
             <b>KERTAS KERJA PHASE-3</b>
             <br />
@@ -122,37 +122,46 @@
 
     </table>
 
-    @if($loop->index < 9) @if ($loop->index === 7)
-        @if($loop->last)
-        <div class="not=page-break"></div>
-        @else
-        <div class="page-break"></div>
-        @endif
+    @if($loop->index < 9) 
+        @if ($loop->index === 7)
+            @if($loop->last)
+                <div class="not=page-break"></div>
+            @else
+                <div class="page-break"></div>
+            @endif
         @endif
 
-        @else
+    @else
 
         @if (($loop->index - 7) % 12 === 0)
-        @if($loop->last)
-        <div class="not=page-break"></div>
-        @else
-        <div class="page-break"></div>
+            @if($loop->last)
+                <div class="not=page-break"></div>
+            @else
+                <div class="page-break"></div>
+            @endif
         @endif
-        @endif
-        @endif
+    @endif
 
-        @if($loop->last)
+    @if($loop->last)
         @if($next_key != $key)
-        <div class="page-break"></div>
+            <div class="page-break"></div>
         @endif
-        @endif
+    @endif
 
-        @endforeach
-
-
-        @endforeach
+    @endforeach
 
 
+    @endforeach
+
+        <script type="text/php">
+        if ( isset($pdf) ) {
+            $size = 6;
+            $font_bold = $fontMetrics->getFont("helvetica", "bold");
+            
+            // generated text written to every page after rendering
+            $pdf->page_text(790, 5, "Page {PAGE_NUM} of {PAGE_COUNT}", $font_bold, $size, [0, 0, 0]);
+        }
+        </script>
 
 </body>
 

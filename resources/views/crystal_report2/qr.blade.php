@@ -167,6 +167,18 @@
     @endforeach
 
     @endforeach
+    <script type="text/php">
+    if ( isset($pdf) ) {
+        $h = $pdf->get_height();
+        $size = 6;
+        $font_bold = $fontMetrics->getFont("helvetica", "bold");
+        $text_height = $fontMetrics->getFontHeight($font_bold, $size);
+        $y = $h - $text_height - 24;
+
+        // generated text written to every page after rendering
+        $pdf->page_text(540, $y, "Page {PAGE_NUM} of {PAGE_COUNT}", $font_bold, $size, [0, 0, 0]);
+    }
+    </script>
 </body>
 
 </html>

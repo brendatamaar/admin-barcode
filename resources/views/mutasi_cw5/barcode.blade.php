@@ -59,7 +59,7 @@
         @endif
     </div>
 
-    <div class="header">
+    <div class="header" style="margin-top: 12px">
         <div class="left">
             <b>KERTAS KERJA PHASE-3</b>
             <br />
@@ -153,7 +153,15 @@
 
     @endforeach
 
-
+    <script type="text/php">
+    if ( isset($pdf) ) {
+        $size = 6;
+        $font_bold = $fontMetrics->getFont("helvetica", "bold");
+        
+        // generated text written to every page after rendering
+        $pdf->page_text(790, 5, "Page {PAGE_NUM} of {PAGE_COUNT}", $font_bold, $size, [0, 0, 0]);
+    }
+    </script>
 
 </body>
 

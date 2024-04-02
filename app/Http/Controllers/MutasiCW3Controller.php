@@ -67,6 +67,8 @@ class MutasiCW3Controller extends Controller
         $indexSheet = $request->input('sheet');
         try {
             Excel::import(new MutasiCW3Import($indexSheet), $request->file('file'));
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            return redirect('mutasi_cw3')->with('error', 'Error! Terdapat data yang kurang, mohon dicek kembali.');
         } catch (\Exception $e) {
             return redirect('mutasi_cw3')->with('error', 'Error! Pastikan sheet dan template excel sudah sesuai. ');
         }

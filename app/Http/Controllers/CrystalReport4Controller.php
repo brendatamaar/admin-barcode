@@ -67,6 +67,8 @@ class CrystalReport4Controller extends Controller
         $indexSheet = $request->input('sheet');
         try {
             Excel::import(new CrystalReport4Import($indexSheet), $request->file('file'));
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            return redirect('crystal_report4')->with('error', 'Error! Terdapat data yang kurang, mohon dicek kembali.');
         } catch (\Exception $e) {
             return redirect('crystal_report4')->with('error', 'Error! Pastikan sheet dan template excel sudah sesuai. ');
         }
@@ -86,7 +88,9 @@ class CrystalReport4Controller extends Controller
 
     public function cetakBarcode()
     {
-        $dataproduk = CrystalReport4::all()->unique('item_no')->unique('item_name')->groupBy('location'); 
+        $dataproduk = CrystalReport4::all()->groupBy('location')->map(function ($items) {
+            return $items->unique('item_no')->unique('item_name');
+                })->values();
         
         $pdf = PDF::loadView('crystal_report3.barcode', compact('dataproduk'));
         $pdf->setPaper('a4', 'portrait');
@@ -97,7 +101,9 @@ class CrystalReport4Controller extends Controller
 
     public function cetakQR()
     {
-        $dataproduk = CrystalReport4::all()->unique('item_no')->unique('item_name')->groupBy('location'); 
+        $dataproduk = CrystalReport4::all()->groupBy('location')->map(function ($items) {
+            return $items->unique('item_no')->unique('item_name');
+                })->values();
         
         $pdf = PDF::loadView('crystal_report3.qr', compact('dataproduk'));
         $pdf->setPaper('a4', 'portrait');

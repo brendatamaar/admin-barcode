@@ -19,7 +19,7 @@ class CrystalReport1Controller extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('permission:view crystal-report1', ['only' => ['index', 'show', 'cetakBarcode', 'deleteAll','importExcel', 'cetakBarcode']]);
+        $this->middleware('permission:view crystal-report1', ['only' => ['index', 'show', 'cetakBarcode', 'deleteAll', 'importExcel', 'cetakBarcode']]);
     }
 
     /**
@@ -66,6 +66,8 @@ class CrystalReport1Controller extends Controller
         $indexSheet = $request->input('sheet');
         try {
             Excel::import(new CrystalReport1Import($indexSheet), $request->file('file'));
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            return redirect('crystal_report1')->with('error', 'Error! Terdapat data yang kurang, mohon dicek kembali.');
         } catch (\Exception $e) {
             return redirect('crystal_report1')->with('error', 'Error! Pastikan sheet dan template excel sudah sesuai. ');
         }
@@ -75,7 +77,8 @@ class CrystalReport1Controller extends Controller
 
     public function downloadImportTemplate()
     {
-        $path = base_path('/template/crystal_report.xls');;
+        $path = base_path('/template/crystal_report.xls');
+        ;
 
         return response()->download($path, 'crystal_report.xls', [
             'Content-Type' => 'text/xls',
@@ -85,8 +88,10 @@ class CrystalReport1Controller extends Controller
 
     public function cetakBarcode()
     {
-        $dataproduk = CrystalReport1::all()->unique('item_no')->unique('item_name')->groupBy('location'); 
-        
+        $dataproduk = CrystalReport1::all()->groupBy('location')->map(function ($items) {
+            return $items->unique('item_no')->unique('item_name');
+                })->values();
+
         $pdf = PDF::loadView('crystal_report1.barcode', compact('dataproduk'));
         $pdf->setPaper('a4', 'portrait');
         $pdf->setOption(['dpi' => 150, 'defaultFont' => 'sans-serif']);
@@ -95,8 +100,10 @@ class CrystalReport1Controller extends Controller
 
     public function cetakQR()
     {
-        $dataproduk = CrystalReport1::all()->unique('item_no')->unique('item_name')->groupBy('location'); 
-        
+        $dataproduk = CrystalReport1::all()->groupBy('location')->map(function ($items) {
+            return $items->unique('item_no')->unique('item_name');
+                })->values();
+
         $pdf = PDF::loadView('crystal_report1.qr', compact('dataproduk'));
         $pdf->setPaper('a4', 'portrait');
         $pdf->setOption(['dpi' => 150, 'defaultFont' => 'sans-serif']);

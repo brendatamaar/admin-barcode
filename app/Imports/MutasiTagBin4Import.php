@@ -3,12 +3,12 @@
 namespace App\Imports;
 
 use App\Models\MutasiTagBin4;
-use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithStartRow;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
+use Maatwebsite\Excel\Concerns\WithValidation;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class MutasiTagBin4Import implements ToModel, WithStartRow, WithMultipleSheets
+class MutasiTagBin4Import implements ToModel, WithMultipleSheets, WithHeadingRow, WithValidation
 {
     private $index_sheet = 0;
 
@@ -23,15 +23,31 @@ class MutasiTagBin4Import implements ToModel, WithStartRow, WithMultipleSheets
      */
     public function model(array $row)
     {
-        //print_r($row);
+        if (!array_filter($row)) {
+            return null;
+        }
+
         return new MutasiTagBin4([
-            'site_id'     => $row[0],
-            'site_name'    => $row[1],
-            'tag_bin_location' => $row[2],
-            'area' => $row[3],
-            'zone' => $row[4],
-            'status' => $row[5]
+            'site_id' => $row['no_kertas'],
+            'site_name' => $row['site_id'],
+            'tag_bin_location' => $row['site_name'],
+            'area' => $row['tag_bin_location'],
+            'zone' => $row['area'],
+            'status' => $row['zone']
         ]);
+
+    }
+
+    public function rules(): array
+    {
+        return [
+            'site_id' => 'required',
+            'site_name' => 'required',
+            'tag_bin_location' => 'required',
+            'area' => 'required',
+            'zone' => 'required',
+            'status' => 'required',
+        ];
     }
 
     public function sheets(): array
@@ -39,10 +55,5 @@ class MutasiTagBin4Import implements ToModel, WithStartRow, WithMultipleSheets
         return [
             $this->index_sheet => $this,
         ];
-    }
-
-    public function startRow(): int
-    {
-        return 2; // Skip the first row
     }
 }

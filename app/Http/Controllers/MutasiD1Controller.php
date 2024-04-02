@@ -61,12 +61,14 @@ class MutasiD1Controller extends Controller
         return redirect()->route('mutasi_d1.index')
             ->with('error', 'Semua data berhasil dihapus.');
     }
-
+    
     public function importExcel(Request $request)
     {
         $indexSheet = $request->input('sheet');
         try {
             Excel::import(new MutasiD1Import($indexSheet), $request->file('file'));
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            return redirect('mutasi_d1')->with('error', 'Error! Terdapat data yang kurang, mohon dicek kembali.');
         } catch (\Exception $e) {
             return redirect('mutasi_d1')->with('error', 'Error! Pastikan sheet dan template excel sudah sesuai. ');
         }

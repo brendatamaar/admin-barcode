@@ -82,7 +82,6 @@
                         <th scope="col">Area</th>
                         <th scope="col">Zone</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Cek</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -96,10 +95,9 @@
                         <td>{{ $mutasi_d3s->area }}</td>
                         <td>{{ $mutasi_d3s->zone }}</td>
                         <td>{{ $mutasi_d3s->status }}</td>
-                        <td>{{ $mutasi_d3s->cek }}</td>
                     </tr>
                     @empty
-                    <td colspan="8">
+                    <td colspan="7">
                         <span class="text-danger">
                             <strong>Data Kosong</strong>
                         </span>
